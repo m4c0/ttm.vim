@@ -10,12 +10,12 @@ endif
 
 syntax case ignore
 
-syntax keyword ttmPredefs ds ss
+syntax keyword ttmPredefs ds ss contained
 
 syntax match ttmLineContinue /$/ contained
 syntax match ttmParam /;/ contained
 
-syntax region ttmString start=/</ skip=/@>/ end=/>/ contains=ALL
+syntax region ttmString start=/</ skip=/@>/ end=/>/ contained contains=ALL
 syntax region ttmActiveC matchgroup=ttmActive start=/#</ skip=/@>/ matchgroup=ttmActive end=/>/ contains=ALL
 syntax region ttmPassiveC matchgroup=ttmPassive start=/##</ skip=/@>/ matchgroup=ttmPassive end=/>/ contains=ALL
 
