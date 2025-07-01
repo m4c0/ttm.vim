@@ -10,14 +10,15 @@ endif
 
 syntax case ignore
 
-syntax keyword ttmPredefs ds ss contained
+syntax match ttmPredefs /ds;/me=e-1 contained
+syntax match ttmPredefs /ss;/me=e-1 contained
 
 syntax match ttmLineContinue /$/ contained
 syntax match ttmParam /;/ contained
 
 syntax region ttmString start=/</ skip=/@>/ end=/>/ contained contains=@ttmBlocks
-syntax region ttmActive matchgroup=ttmActive start=/#</ skip=/@>/ end=/>/ contains=@ttmBlocks,ttmParam
-syntax region ttmPassive matchgroup=ttmPassive start=/##</ skip=/@>/ end=/>/ contains=@ttmBlocks,ttmParam
+syntax region ttmActive matchgroup=ttmActive start=/#</ skip=/@>/ end=/>/ contains=@ttmBlocks,ttmParam,ttmPredefs
+syntax region ttmPassive matchgroup=ttmPassive start=/##</ skip=/@>/ end=/>/ contains=@ttmBlocks,ttmParam,ttmPredefs
 
 syntax cluster ttmBlocks contains=ttmString,ttmActive,ttmPassive
 
