@@ -4,7 +4,7 @@
 " Last Change:	2025 Jul 01
 " Remark:	None
 
-if exists("b:current_syntax")
+if exists("b:current_syntax") && b:current_syntax == "ttm"
   finish
 endif
 
