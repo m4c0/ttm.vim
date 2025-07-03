@@ -10,7 +10,10 @@ endif
 
 syntax case ignore
 
+syntax match ttmEscapedChar /@./ contained
+
 syntax match ttmPredefs /ds;/me=e-1 contained
+syntax match ttmPredefs /ps;/me=e-1 contained
 syntax match ttmPredefs /ss;/me=e-1 contained
 
 syntax match ttmLineContinue /$/ contained
@@ -20,12 +23,13 @@ syntax region ttmString start=/</ skip=/@>/ end=/>/ contained contains=@ttmBlock
 syntax region ttmActive matchgroup=ttmActive start=/#</ skip=/@>/ end=/>/ contains=@ttmBlocks,ttmParam,ttmPredefs
 syntax region ttmPassive matchgroup=ttmPassive start=/##</ skip=/@>/ end=/>/ contains=@ttmBlocks,ttmParam,ttmPredefs
 
-syntax cluster ttmBlocks contains=ttmString,ttmActive,ttmPassive
+syntax cluster ttmBlocks contains=ttmEscapedChar,ttmString,ttmActive,ttmPassive
 
-highlight link ttmActive  Statement
-highlight link ttmParam   Special
-highlight link ttmPassive PreProc
-highlight link ttmPredefs Identifier
-highlight link ttmString  String
+highlight link ttmActive      Statement
+highlight link ttmEscapedChar SpecialChar
+highlight link ttmParam       Special
+highlight link ttmPassive     PreProc
+highlight link ttmPredefs     Identifier
+highlight link ttmString      String
 
 let b:current_syntax="ttm"
